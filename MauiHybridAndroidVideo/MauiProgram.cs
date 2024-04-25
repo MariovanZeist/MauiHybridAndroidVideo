@@ -20,10 +20,10 @@ public static class MauiProgram
 		builder.Services.AddMauiBlazorWebView();
 
 #if ANDROID
-		BlazorWebViewHandler.BlazorWebViewMapper.ModifyMapping(nameof(IBlazorWebView), (handler, view, args) =>
-		{
-			handler.PlatformView.SetWebChromeClient(new BlazorWebChromeClient(handler));
-		});
+		//BlazorWebViewHandler.BlazorWebViewMapper.ModifyMapping(nameof(IBlazorWebView), (handler, view, args) =>
+		//{
+		//	handler.PlatformView.SetWebChromeClient(new BlazorWebChromeClient(handler));
+		//});
 #endif
 
 
