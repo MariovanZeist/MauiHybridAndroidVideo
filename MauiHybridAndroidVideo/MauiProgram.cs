@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Components.WebView.Maui;
+using Microsoft.Extensions.Logging;
+#if ANDROID
+using MauiHybridAndroidVideo.Android;
+#endif
 
 namespace MauiHybridAndroidVideo;
 public static class MauiProgram
@@ -14,6 +18,15 @@ public static class MauiProgram
 			});
 
 		builder.Services.AddMauiBlazorWebView();
+
+#if ANDROID
+		BlazorWebViewHandler.BlazorWebViewMapper.ModifyMapping(nameof(IBlazorWebView), (handler, view, args) =>
+		{
+			handler.PlatformView.SetWebChromeClient(new BlazorWebChromeClient(handler));
+		});
+#endif
+
+
 
 #if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();
